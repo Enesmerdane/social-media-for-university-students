@@ -22,30 +22,30 @@ import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 
 import { useAuth } from "../../context/AuthContext";
 
-const NavLink = ({ children }) => (
-    <Link
-        px={2}
-        py={1}
-        rounded={"md"}
-        _hover={{
-            textDecoration: "none",
-            bg: useColorModeValue("gray.200", "gray.700"),
-        }}
-        href={"#"}
-    >
-        {children}
-    </Link>
-);
+const NavLink = ({ children }) => {
+    return (
+        <Link
+            px={2}
+            py={1}
+            rounded={"md"}
+            _hover={{
+                textDecoration: "none",
+                bg: useColorModeValue("gray.200", "gray.700"),
+            }}
+            href={"#"}
+        >
+            {children}
+        </Link>
+    );
+};
 
 function Navbar() {
     const { user, loggedIn, login, logout } = useAuth();
 
     const { colorMode, toggleColorMode } = useColorMode();
-    var Links;
+    var links = ["Home", "Hot Topics", "Events"];
     if (loggedIn) {
-        Links = ["Home", "Hot Topics", "Friends"];
-    } else {
-        Links = ["Home", "Hot Topics"];
+        links.push("Friends");
     }
 
     return (
@@ -70,7 +70,19 @@ function Navbar() {
                         spacing={4}
                         display={{ base: "none", md: "flex" }}
                     >
-                        {Links.map((link) => (
+                        <Link
+                            px={2}
+                            py={1}
+                            rounded={"md"}
+                            _hover={{
+                                textDecoration: "none",
+                                bg: useColorModeValue("gray.200", "gray.700"),
+                            }}
+                            href="/home"
+                        >
+                            Home
+                        </Link>
+                        {links.map((link) => (
                             <NavLink key={link}>{link}</NavLink>
                         ))}
                     </HStack>
