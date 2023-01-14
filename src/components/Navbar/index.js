@@ -20,6 +20,8 @@ import {
 } from "@chakra-ui/react";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 
+import { useAuth } from "../../context/AuthContext";
+
 const NavLink = ({ children }) => (
     <Link
         px={2}
@@ -36,8 +38,15 @@ const NavLink = ({ children }) => (
 );
 
 function Navbar() {
+    const { user, loggedIn, login, logout } = useAuth();
+
     const { colorMode, toggleColorMode } = useColorMode();
-    const Links = ["Home", "Hot Topics", "Friends"];
+    var Links;
+    if (loggedIn) {
+        Links = ["Home", "Hot Topics", "Friends"];
+    } else {
+        Links = ["Home", "Hot Topics"];
+    }
 
     return (
         <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
@@ -71,7 +80,9 @@ function Navbar() {
                         <Button onClick={toggleColorMode}>
                             {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
                         </Button>
+                    </Stack>
 
+                    {loggedIn ? (
                         <Menu>
                             <MenuButton
                                 as={Button}
@@ -99,16 +110,24 @@ function Navbar() {
                                 </Center>
                                 <br />
                                 <Center>
-                                    <p>Username</p>
+                                    <p>{user}</p>
                                 </Center>
                                 <br />
                                 <MenuDivider />
                                 <MenuItem>Profile</MenuItem>
                                 <MenuItem>Account Settings</MenuItem>
-                                <MenuItem>Logout</MenuItem>
+                                <MenuItem onClick={logout}>Logout</MenuItem>
                             </MenuList>
                         </Menu>
-                    </Stack>
+                    ) : (
+                        <Button
+                            onClick={() => {
+                                login("user1");
+                            }}
+                        >
+                            Login
+                        </Button>
+                    )}
                 </Flex>
             </Flex>
         </Box>
