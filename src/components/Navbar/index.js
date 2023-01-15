@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useMemo } from "react";
 
 import {
     Box,
@@ -27,7 +27,14 @@ function Navbar() {
     const { user, loggedIn, login, logout } = useAuth();
 
     const { colorMode, toggleColorMode } = useColorMode();
-    var links = [
+    const Links = useMemo(() => {
+        return [
+            { name: "Home", path: "/home" },
+            { name: "Hot Topics", path: "/hottopics" },
+            { name: "Events", path: "/events" },
+        ];
+    }, []);
+    const links = [
         { name: "Home", path: "/home" },
         { name: "Hot Topics", path: "/hottopics" },
         { name: "Events", path: "/events" },
@@ -58,7 +65,7 @@ function Navbar() {
                         spacing={4}
                         display={{ base: "none", md: "flex" }}
                     >
-                        {links.map((link) => (
+                        {Links.map((link) => (
                             <NavLink key={link.name} path={link.path}>
                                 {link.name}
                             </NavLink>
