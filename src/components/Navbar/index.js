@@ -4,7 +4,6 @@ import {
     Box,
     Flex,
     Avatar,
-    Link,
     Button,
     Menu,
     MenuButton,
@@ -20,9 +19,11 @@ import {
 } from "@chakra-ui/react";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 
+import { Link } from "react-router-dom";
+
 import { useAuth } from "../../context/AuthContext";
 
-const NavLink = ({ children }) => {
+const NavLink = ({ children, path }) => {
     return (
         <Link
             px={2}
@@ -32,7 +33,7 @@ const NavLink = ({ children }) => {
                 textDecoration: "none",
                 bg: useColorModeValue("gray.200", "gray.700"),
             }}
-            href={"#"}
+            to={path}
         >
             {children}
         </Link>
@@ -43,9 +44,13 @@ function Navbar() {
     const { user, loggedIn, login, logout } = useAuth();
 
     const { colorMode, toggleColorMode } = useColorMode();
-    var links = ["Home", "Hot Topics", "Events"];
+    var links = [
+        { name: "Home", path: "/home" },
+        { name: "Hot Topics", path: "/hottopics" },
+        { name: "Events", path: "/events" },
+    ];
     if (loggedIn) {
-        links.push("Friends");
+        links.push({ name: "Friends", path: "/friends" });
     }
 
     return (
@@ -70,25 +75,15 @@ function Navbar() {
                         spacing={4}
                         display={{ base: "none", md: "flex" }}
                     >
-                        <Link
-                            px={2}
-                            py={1}
-                            rounded={"md"}
-                            _hover={{
-                                textDecoration: "none",
-                                bg: useColorModeValue("gray.200", "gray.700"),
-                            }}
-                            href="/home"
-                        >
-                            Home
-                        </Link>
                         {links.map((link) => (
-                            <NavLink key={link}>{link}</NavLink>
+                            <NavLink key={link.name} path={link.path}>
+                                {link.name}
+                            </NavLink>
                         ))}
                     </HStack>
                 </HStack>
                 <Flex alignItems={"center"}>
-                    <Stack direction={"row"} spacing={7}>
+                    <Stack direction={"row"}>
                         <Button onClick={toggleColorMode}>
                             {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
                         </Button>
