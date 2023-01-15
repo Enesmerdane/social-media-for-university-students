@@ -19,26 +19,9 @@ import {
 } from "@chakra-ui/react";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 
-import { Link } from "react-router-dom";
-
 import { useAuth } from "../../context/AuthContext";
 
-const NavLink = ({ children, path }) => {
-    return (
-        <Link
-            px={2}
-            py={1}
-            rounded={"md"}
-            _hover={{
-                textDecoration: "none",
-                bg: useColorModeValue("gray.200", "gray.700"),
-            }}
-            to={path}
-        >
-            {children}
-        </Link>
-    );
-};
+import NavLink from "../NavLink";
 
 function Navbar() {
     const { user, loggedIn, login, logout } = useAuth();
