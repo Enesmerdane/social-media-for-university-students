@@ -27,13 +27,11 @@ function Navbar() {
     const { user, loggedIn, login, logout } = useAuth();
 
     const { colorMode, toggleColorMode } = useColorMode();
-    const Links = useMemo(() => {
-        return [
-            { name: "Home", path: "/home" },
-            { name: "Hot Topics", path: "/hottopics" },
-            { name: "Events", path: "/events" },
-        ];
-    }, []);
+    const Links = [
+        { name: "Home", path: "/home" },
+        { name: "Hot Topics", path: "/hottopics" },
+        { name: "Events", path: "/events" },
+    ];
     if (loggedIn) {
         Links.push({ name: "Friends", path: "/friends" });
     }
