@@ -34,13 +34,8 @@ function Navbar() {
             { name: "Events", path: "/events" },
         ];
     }, []);
-    const links = [
-        { name: "Home", path: "/home" },
-        { name: "Hot Topics", path: "/hottopics" },
-        { name: "Events", path: "/events" },
-    ];
     if (loggedIn) {
-        links.push({ name: "Friends", path: "/friends" });
+        Links.push({ name: "Friends", path: "/friends" });
     }
 
     return (
