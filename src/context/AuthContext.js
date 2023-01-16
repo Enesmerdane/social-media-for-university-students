@@ -22,7 +22,6 @@ const AuthProvider = ({ children }) => {
 
     const login = (username) => {
         localStorage.setItem("username", username);
-        console.log(username);
         setUser(username);
         setLoggedIn(true);
     };

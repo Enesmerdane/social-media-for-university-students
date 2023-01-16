@@ -1,10 +1,9 @@
-import { useEffect } from "react";
+import { useMemo } from "react";
 
 import {
     Box,
     Flex,
     Avatar,
-    Link,
     Button,
     Menu,
     MenuButton,
@@ -22,30 +21,26 @@ import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 
 import { useAuth } from "../../context/AuthContext";
 
-const NavLink = ({ children }) => (
-    <Link
-        px={2}
-        py={1}
-        rounded={"md"}
-        _hover={{
-            textDecoration: "none",
-            bg: useColorModeValue("gray.200", "gray.700"),
-        }}
-        href={"#"}
-    >
-        {children}
-    </Link>
-);
+import NavLink from "../NavLink";
 
 function Navbar() {
     const { user, loggedIn, login, logout } = useAuth();
 
     const { colorMode, toggleColorMode } = useColorMode();
-    var Links;
+    const Links = useMemo(() => {
+        return [
+            { name: "Home", path: "/home" },
+            { name: "Hot Topics", path: "/hottopics" },
+            { name: "Events", path: "/events" },
+        ];
+    }, []);
+    const links = [
+        { name: "Home", path: "/home" },
+        { name: "Hot Topics", path: "/hottopics" },
+        { name: "Events", path: "/events" },
+    ];
     if (loggedIn) {
-        Links = ["Home", "Hot Topics", "Friends"];
-    } else {
-        Links = ["Home", "Hot Topics"];
+        links.push({ name: "Friends", path: "/friends" });
     }
 
     return (
@@ -71,12 +66,14 @@ function Navbar() {
                         display={{ base: "none", md: "flex" }}
                     >
                         {Links.map((link) => (
-                            <NavLink key={link}>{link}</NavLink>
+                            <NavLink key={link.name} path={link.path}>
+                                {link.name}
+                            </NavLink>
                         ))}
                     </HStack>
                 </HStack>
                 <Flex alignItems={"center"}>
-                    <Stack direction={"row"} spacing={7}>
+                    <Stack direction={"row"}>
                         <Button onClick={toggleColorMode}>
                             {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
                         </Button>
