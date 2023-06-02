@@ -14,6 +14,8 @@ import {
     Image,
 } from "@chakra-ui/react";
 
+import { StarIcon, ChatIcon, WarningIcon } from "@chakra-ui/icons";
+
 function PostCard({
     username,
     userPhotoURL,
@@ -53,14 +55,14 @@ function PostCard({
                     },
                 }}
             >
-                <Button flex="1" variant="ghost">
-                    Like
+                <Button flex="1" variant="ghost" leftIcon={<StarIcon />}>
+                    Star
                 </Button>
-                <Button flex="1" variant="ghost">
+                <Button flex="1" variant="ghost" leftIcon={<ChatIcon />}>
                     Comment
                 </Button>
-                <Button flex="1" variant="ghost">
-                    Share
+                <Button flex="1" variant="ghost" leftIcon={<WarningIcon />}>
+                    Report
                 </Button>
             </CardFooter>
         </Card>
