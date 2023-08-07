@@ -17,6 +17,8 @@ import {
 } from "@chakra-ui/react";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 
+import { useSelector, useDispatch } from "react-redux";
+import { login, logout } from "../../store/reducers/userReducer";
 import NavLink from "../NavLink";
 
 function Navbar() {
@@ -29,8 +31,11 @@ function Navbar() {
         { name: "Hot Topics", path: "/hottopics" },
         { name: "Events", path: "/events" },
     ];
-    //if (loggedIn) {
-    if (true) {
+
+    const dispatch = useDispatch();
+    const user = useSelector((state) => state.user);
+
+    if (user.auth) {
         Links.push({ name: "Friends", path: "/friends" });
     }
 
@@ -70,7 +75,7 @@ function Navbar() {
                         </Button>
                     </Stack>
 
-                    {true ? (
+                    {user.auth ? (
                         <Menu>
                             <MenuButton
                                 as={Button}
@@ -102,13 +107,19 @@ function Navbar() {
                                 <MenuDivider />
                                 <MenuItem>Profile</MenuItem>
                                 <MenuItem>Account Settings</MenuItem>
-                                <MenuItem>Logout</MenuItem>
+                                <MenuItem
+                                    onClick={() => {
+                                        dispatch(logout());
+                                    }}
+                                >
+                                    Logout
+                                </MenuItem>
                             </MenuList>
                         </Menu>
                     ) : (
                         <Button
                             onClick={() => {
-                                // login("user1");
+                                dispatch(login());
                             }}
                         >
                             Login

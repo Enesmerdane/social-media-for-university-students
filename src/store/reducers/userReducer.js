@@ -9,7 +9,7 @@ const DEFAULT_USER_STATE = {
     auth: false,
 };
 
-export const userSlice = createSlice({
+const userSlice = createSlice({
     name: "user",
     initialState: DEFAULT_USER_STATE,
     reducers: {
@@ -21,7 +21,11 @@ export const userSlice = createSlice({
             state.auth = true;
         },
         logout: (state) => {
-            state = DEFAULT_USER_STATE;
+            state.auth = false;
+            state.data = { ...DEFAULT_USER_STATE.data };
         },
     },
 });
+
+export const { login, logout } = userSlice.actions;
+export default userSlice.reducer;
