@@ -69,7 +69,7 @@ function Navbar() {
                     </HStack>
                 </HStack>
                 <Flex alignItems={"center"}>
-                    <Stack direction={"row"}>
+                    <Stack direction={"row"} mr={2}>
                         <Button onClick={toggleColorMode}>
                             {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
                         </Button>
