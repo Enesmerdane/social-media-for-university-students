@@ -1,4 +1,3 @@
-
 import {
     Box,
     Flex,
@@ -18,12 +17,11 @@ import {
 } from "@chakra-ui/react";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 
-import { useAuth } from "../../context/AuthContext";
-
 import NavLink from "../NavLink";
 
 function Navbar() {
-    const { user, loggedIn, login, logout } = useAuth();
+    // const { user, loggedIn, login, logout } = useAuth();
+    // TODO
 
     const { colorMode, toggleColorMode } = useColorMode();
     const Links = [
@@ -31,7 +29,8 @@ function Navbar() {
         { name: "Hot Topics", path: "/hottopics" },
         { name: "Events", path: "/events" },
     ];
-    if (loggedIn) {
+    //if (loggedIn) {
+    if (true) {
         Links.push({ name: "Friends", path: "/friends" });
     }
 
@@ -71,7 +70,7 @@ function Navbar() {
                         </Button>
                     </Stack>
 
-                    {loggedIn ? (
+                    {true ? (
                         <Menu>
                             <MenuButton
                                 as={Button}
@@ -98,20 +97,18 @@ function Navbar() {
                                     />
                                 </Center>
                                 <br />
-                                <Center>
-                                    <p>{user}</p>
-                                </Center>
+                                <Center>{/* <p>{user}</p> */}</Center>
                                 <br />
                                 <MenuDivider />
                                 <MenuItem>Profile</MenuItem>
                                 <MenuItem>Account Settings</MenuItem>
-                                <MenuItem onClick={logout}>Logout</MenuItem>
+                                <MenuItem>Logout</MenuItem>
                             </MenuList>
                         </Menu>
                     ) : (
                         <Button
                             onClick={() => {
-                                login("user1");
+                                // login("user1");
                             }}
                         >
                             Login
