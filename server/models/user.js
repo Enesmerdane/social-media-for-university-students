@@ -5,7 +5,7 @@ const { isUniversityEmail } = require("../utils");
 
 require("dotenv").config();
 
-const userScheme = mongoose.Schema({
+const userSchema = mongoose.Schema({
     email: {
         type: String,
         required: true,
@@ -27,3 +27,16 @@ const userScheme = mongoose.Schema({
         trim: true,
     },
 });
+
+userSchema.statics.register = async (email, password) => {
+    try {
+        const user = new User({ email, password });
+        await user.save();
+        return user;
+    } catch (error) {
+        throw error;
+    }
+};
+
+const User = mongoose.model("User", userSchema);
+module.exports = { User };
