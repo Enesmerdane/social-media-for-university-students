@@ -1,3 +1,8 @@
+# To run this project in your environment successfully!
+The following packages need to be installed globally in your computer or you have to add it to the project.
+1. nodemon https://www.npmjs.com/package/nodemon
+2. concurrently https://www.npmjs.com/package/concurrently
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
