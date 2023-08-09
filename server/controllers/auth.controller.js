@@ -36,6 +36,9 @@ const authController = {
             res.status(500).send();
         }
     },
+    async authTest(req, res) {
+        res.json({ message: "authtest successful" });
+    },
 };
 
 module.exports = authController;
