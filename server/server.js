@@ -14,12 +14,18 @@ mongoose.connect(mongoURI);
 
 // mongodb+srv://enesmrdanedev:<password>@cluster0.zvhsc2c.mongodb.net/?retryWrites=true&w=majority
 
+const routes = require("./routes");
+
 // PARSING
 app.use(bodyParser.json());
 
 // SANITIZING
 app.use(xss());
 app.use(mongoSanitize());
+
+app.use("/api", routes);
+const authRoute = require("./routes/auth.route");
+app.use(authRoute);
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
