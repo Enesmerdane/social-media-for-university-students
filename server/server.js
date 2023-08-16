@@ -11,7 +11,14 @@ const passport = require("passport");
 const port = process.env.PORT || 3001;
 
 const mongoURI = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}?retryWrites=true&w=majority`;
-mongoose.connect(mongoURI);
+mongoose
+    .connect(mongoURI)
+    .then(() => {
+        console.log("Connected to MongoDB");
+    })
+    .catch((error) => {
+        console.log(error);
+    });
 
 const routes = require("./routes");
 const jwtStrategy = require("./middleware/passport");
