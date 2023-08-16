@@ -15,9 +15,8 @@ const authController = {
         try {
             const { email, password } = req.body;
             const user = await User.findOne({ email });
-            console.log(user);
             if (!user) {
-                console.log("here we are");
+                console.log("BE - User not found.");
                 res.status(400).send({ message: "No user" });
                 return;
             }

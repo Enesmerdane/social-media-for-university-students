@@ -28,18 +28,19 @@ const userSlice = createSlice({
         },
     },
     extraReducers: (builder) => {
-        console.log(builder);
-        builder.addCase(loginAction.fulfilled, (state, action) => {
-            console.log("hey");
-        });
+        builder
+            .addCase(loginAction.fulfilled, (state, action) => {
+                console.log(action.payload);
+            })
+            .addCase(loginAction.rejected, (state, action) => {
+                console.log(action);
+            });
         // builder
         //     // login
         //     .addCase(loginAction.fulfilled, (state, action) => {
         //         state.data = action.payload.data;
         //     })
-        //     .addCase(login.rejected, (state, action) => {
-        //         console.log(action.payload);
-        //     });
+        //
     },
 });
 

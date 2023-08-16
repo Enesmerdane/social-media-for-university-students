@@ -11,7 +11,7 @@ function Events() {
             Events
             <button
                 onClick={() => {
-                    dispatch(loginAction());
+                    dispatch(loginAction({"email": "enes@gmail.com", "password":"12312312"}));
                 }}
             >
                 Test Button
