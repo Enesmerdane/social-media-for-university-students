@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+import { loginAction } from "../actions/userActions";
+
 const DEFAULT_USER_STATE = {
     loading: false,
     data: {
@@ -24,6 +26,20 @@ const userSlice = createSlice({
             state.auth = false;
             state.data = { ...DEFAULT_USER_STATE.data };
         },
+    },
+    extraReducers: (builder) => {
+        console.log(builder);
+        builder.addCase(loginAction.fulfilled, (state, action) => {
+            console.log("hey");
+        });
+        // builder
+        //     // login
+        //     .addCase(loginAction.fulfilled, (state, action) => {
+        //         state.data = action.payload.data;
+        //     })
+        //     .addCase(login.rejected, (state, action) => {
+        //         console.log(action.payload);
+        //     });
     },
 });
 
