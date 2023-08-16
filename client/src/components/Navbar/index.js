@@ -18,7 +18,7 @@ import {
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 
 import { useSelector, useDispatch } from "react-redux";
-import { login, logout } from "../../store/reducers/userReducer";
+import { logout } from "../../store/reducers/userReducer";
 import NavLink from "../NavLink";
 
 function Navbar() {
@@ -117,13 +117,16 @@ function Navbar() {
                             </MenuList>
                         </Menu>
                     ) : (
-                        <Button
-                            onClick={() => {
-                                dispatch(login());
-                            }}
-                        >
+                        <NavLink key="Login" path="/login">
                             Login
-                        </Button>
+                        </NavLink>
+                        // <Button
+                        //     onClick={() => {
+                        //         dispatch(login());
+                        //     }}
+                        // >
+                        //     Login
+                        // </Button>
                     )}
                 </Flex>
             </Flex>

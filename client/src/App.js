@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Events from "./pages/Events";
 import Friends from "./pages/Friends";
 import HotTopics from "./pages/HotTopics";
+import Login from "./pages/Login";
 
 import { Routes, Route } from "react-router-dom";
 
@@ -16,6 +17,7 @@ function App() {
                 <Route path="/events" element={<Events />} />
                 <Route path="/hottopics" element={<HotTopics />} />
                 <Route path="/friends" element={<Friends />} />
+                <Route path="login" element={<Login />} />
                 <Route path="*" element={<div>hello</div>} />
             </Routes>
         </div>
